@@ -1,6 +1,6 @@
 <?php
-    $age = 15 ;
-
+    $age = 1 ;
+    echo "<h1>";
     switch ($age)
     {
     case ($age > 100):
@@ -21,9 +21,8 @@
     case ($age > 1.5):
         echo "It is time you to kindergarten" ;
         break ;
-    case ($age < 1.5):
+    default:
         echo "Suck tits and scream" ;
-        break ;
     }
 
 

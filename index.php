@@ -1,33 +1,37 @@
 <?php
-
-if (isset($_POST["first"]))
-{
-    $first = $_POST ["first"];
-}
-else
-{
+$errors = [];
+if (isset($_POST['first'])) {
+    $first = $_POST ['first'];
+    if (gettype($first) != 'integer') ;
+    {
+        $errors [] = "ERROR please enter first number<br>";
+    }
+} else {
     $first = '';
-    echo "ERROR please enter ferst number<br>";
 }
-if (isset($_POST["second"]))
-{
-    $second = $_POST ["second"];
+if (isset($_POST['second'])) {
+    $second = $_POST ['second'];
+    if (gettype($second) != 'integer') ;
+    {
+        $errors [] = "ERROR please enter second number<br>";
+    }
+} else {
+    $second = '';
 }
-else
-{
-    $second = '' ;
-    echo "ERROR please enter second number<br>";
-}
-if (isset($_POST["calculation"]))
-{
-    $calculation = $_POST ["calculation"];
-}
-else
-{
+if (isset($_POST['calculation'])) {
+    $calculation = $_POST ['calculation'];
+    if ($calculation != ("+" | "-" | "*" | "/")) ;
+    {
+        $errors [] = "ERROR please enter the sign of action<br>";
+    }
+} else {
     $calculation = '';
-    echo "ERROR please enter the sign of action<br>";
 }
-
+if (!empty($errors)) {
+    foreach ($errors as $error) {
+        echo "<div style='color: red;'>$error</div>";
+    }
+}
 
 $form = <<<FORM
 <form action="index.php" method="post">
@@ -39,23 +43,21 @@ $form = <<<FORM
 FORM;
 echo $form;
 echo "<a href='index.php'>Back</a><br>";
-switch ($calculation)
-{
+switch ($calculation) {
     case '+':
-        echo "The result is ". $first + $second;
+        echo "The result is " . ($first + $second);
         break;
     case '-':
-        echo "The result is ". $first - $second;
+        echo "The result is " . ($first - $second);
         break;
     case '*':
-        echo "The result is ".$first * $second;
+        echo "The result is " . $first * $second;
         break;
     case '/':
-        echo "The result is ".$first / $second;
+        echo "The result is " . $first / $second;
         break;
     default:
-        echo "Please enter the correct character actions<br>";
-
+        echo "ERROR please enter the sign of action<br>";
 }
 
 ?>.

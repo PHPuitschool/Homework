@@ -56,8 +56,8 @@ switch ($calculation) {
     case '/':
         echo "The result is " . $first / $second;
         break;
-    default:
-        echo "ERROR please enter the sign of action<br>";
+    //  default:
+    //      echo "ERROR please enter the sign of action<br>";
 }
 
 ?>.
